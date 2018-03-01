@@ -4,11 +4,10 @@ import { reset as resetForm, initialize } from 'redux-form'
 import { showTabs, selectTab } from '../common/tab/tabActions'
 import consts from '../consts'
 
-const BASE_URL = consts.API_URL
 const INITIAL_VALUES = {credits: [{}], debts: [{}]}
 
 export function getList() {
-    const request = axios.get(`${BASE_URL}/billingCycles`)
+    const request = axios.get(`${consts.API_URL}/billingCycles`)
 
     return {
         type: 'BILLING_CYCLES_FETCHED',
@@ -31,7 +30,7 @@ export function remove(values) {
 function submit(values, method) {
     return dispatch => {
         const id = values._id ? values._id : ''
-        axios[method](`${BASE_URL}/billingCycles/${id}`, values)
+        axios[method](`${consts.API_URL}/billingCycles/${id}`, values)
         .then(resp => {
             toastr.success('Sucesso', 'Operação realizada com sucesso.')
             dispatch(init())

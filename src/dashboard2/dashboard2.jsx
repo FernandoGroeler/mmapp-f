@@ -8,8 +8,6 @@ import Row from '../common/layout/row'
 
 import consts from '../consts'
 
-const BASE_URL = consts.API_URL
-
 export default class Dashboard2 extends Component {
     constructor(props) {
         super(props)
@@ -17,7 +15,7 @@ export default class Dashboard2 extends Component {
     }
 
     componentWillMount() {
-        axios.get(`${BASE_URL}/billingCycles/summary`)
+        axios.get(`${consts.API_URL}/billingCycles/summary`)
             .then(resp => this.setState(resp.data))
     }
     render() {
